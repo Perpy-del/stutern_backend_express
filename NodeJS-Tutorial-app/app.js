@@ -24,3 +24,4 @@ app.listen(3000, () => {
 
 // Passing the value of the keys in the url
 // localhost:3000/user/name/age/sex
+// localhost:3000/user/Perpetual/18/Female would return {"name":"Perpetual","age":"18","sex":"Female"} to the browser
