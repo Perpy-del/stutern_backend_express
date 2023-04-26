@@ -29,7 +29,7 @@ async function getDadJokes() {
 
 getDadJokes();
 
-// Everytime you run node(node server.js), it comes up with a joke in the format below.
+// Everytime you run node(node server.js), it comes up with a new random dadjoke in the format below.
 
 /* Title: period
  Joke: What did the Scottish lass say when she heard there would be universal free period products? Everyone! All together now!, “It’s about bloody time!” 
