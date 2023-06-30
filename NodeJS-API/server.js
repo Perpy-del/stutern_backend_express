@@ -36,9 +36,6 @@ app.get("/api/jokes", async function getDadJokes(req, res) {
         Punchline: `${response.data.body[0].punchline}`,
       },
     });
-    // return (
-    //   `Title: ${response.data.body[0].type} \n Joke: ${response.data.body[0].setup}, ${response.data.body[0].punchline}`
-    //   );
   } catch (error) {
     console.error(error);
   }
