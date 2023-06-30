@@ -1,4 +1,13 @@
+const express = require("express");
 const axios = require("axios");
+
+const app = express();
+
+const PORT = 8080;
+
+app.get("/api", function (req, res) {
+  res.send("Welcome to Dad Jokes");
+});
 
 // Create a get request to get a random joke using the API URL
 const fetchDadJokes = {
@@ -14,23 +23,27 @@ const fetchDadJokes = {
   },
 };
 
-//   Using aync-await keywords and the try-catch block to get the response from the server
-async function getDadJokes() {
+app.get("/api/jokes", async function getDadJokes(req, res) {
   try {
     const response = await axios.request(fetchDadJokes);
-    // console.log(response.data);
-    console.log(
-      `Title: ${response.data.body[0].type} \n Joke: ${response.data.body[0].setup}, ${response.data.body[0].punchline}`
-    );
+
+    res.status(200).json({
+      message: "Joke generated successfully",
+      status: "success",
+      data: {
+        Title: `${response.data.body[0].type}`,
+        Joke: `${response.data.body[0].setup}`,
+        Punchline: `${response.data.body[0].punchline}`,
+      },
+    });
+    // return (
+    //   `Title: ${response.data.body[0].type} \n Joke: ${response.data.body[0].setup}, ${response.data.body[0].punchline}`
+    //   );
   } catch (error) {
     console.error(error);
   }
-}
+});
 
-getDadJokes();
-
-// Everytime you run node(node server.js), it comes up with a new random dadjoke in the format below.
-
-/* Title: period
- Joke: What did the Scottish lass say when she heard there would be universal free period products? Everyone! All together now!, “It’s about bloody time!” 
- */
+app.listen(PORT, () => {
+  console.log(`Server listening on PORT ${PORT}`);
+});
